@@ -1,0 +1,204 @@
+<!-- TOP SECRET!!! EE1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Easter Bunny Transmission</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Sniglet:wght@800&display=swap" rel="stylesheet">
+    <style>
+      
+        :root {
+            --bunny-pink: #ffcceb;
+            --easter-blue: #ccebff;
+            --grass-green: #99ff99;
+            --egg-purple: #e2ccff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--easter-blue);
+            font-family: 'Sniglet', cursive;
+        }
+
+        /* The Easter Background Styling */
+        #ui-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, var(--easter-blue) 0%, #ffffff 100%);
+            z-index: 10;
+        }
+
+        .grass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: var(--grass-green);
+            border-top: 5px dashed #77dd77;
+        }
+
+        /* The "Unlock" Button */
+        #start-button {
+            padding: 25px 50px;
+            font-size: 24px;
+            background-color: var(--bunny-pink);
+            color: #d81b60;
+            border: 5px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #f48fb1;
+            transition: all 0.1s;
+            z-index: 20;
+            text-transform: uppercase;
+        }
+
+        #start-button:active {
+            transform: translateY(5px);
+            box-shadow: 0 5px 0 #f48fb1;
+        }
+
+        /* Video Container */
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: none;
+            z-index: 30;
+        }
+
+        #player { width: 100%; height: 100%; }
+
+        /* The "Invisible Shield" to block YouTube Clicks */
+        #shield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%; /* Leaves bottom controls free but blocks top/middle clicks */
+            z-index: 40;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  /*EE2*/
+<!-- (\ /)
+    ( . .)  <- Clover is watching your margins. 
+    c(")(")    Center your divs, or he'll hide your socks!
+-->  
+    <div id="ui-layer">
+        <h1 style="color: #5c6bc0; text-align: center; padding: 20px;">INCOMING BUNNY<br>TRANSMISSION...</h1>
+        <button id="start-button">Tap to Play Clue</button>
+        <div class="grass"></div>
+    </div>
+
+    <div id="player-container">
+        <div id="player"></div>
+        <div id="shield"></div>
+    </div>
+
+    <script>
+      // The Secret Agent Console Log (EE3)
+        console.log("%c STOP! %c Secret Agent Eyes Only! ", "color: #d81b60; font-size: 20px; font-weight: bold;", "color: #5c6bc0; font-size: 15px;");
+        console.log("Clover is watching... keep hunting, Agent " + clueId + "!");
+        // 1. Get Clue ID from URL (e.g., hunt.github.io/?clue=1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const clueId = urlParams.get('clue') || '1';
+
+        // 2. Mapping your YouTube IDs here
+        const videoMap = {
+            '1': 'ZuZZnovXLBs',
+            '2': 'yq7zA4jeGKM',
+            '3': 'EjjHTYZhJM4',
+            '4': 'fM1BtVtJogM',
+            '5': 'c8J5KZwPMTo',
+            '6': 'nRGl_-gNoPI',
+            '7': 'iSDM_Iz--Wg',
+            '8': 'XHltn6n2WFw',
+            '9': 'ZgpuAlAyY-c',
+            '10': 'EZwp9gb4Zl4',
+            '99': 'dQw4w9WgXcQ',//EE4
+            '0': 'jGdl_oFhTWw',
+            // ... add all 11 IDs here
+        };
+
+        const videoId = videoMap[clueId];
+
+        // 3. Load YouTube API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 1,
+                    'modestbranding': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'fs': 1 // Allow full screen button
+                },
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // 4. Handle Play & Fullscreen
+        document.getElementById('start-button').addEventListener('click', function() {
+            const container = document.getElementById('player-container');
+            container.style.display = 'block';
+            document.getElementById('shield').style.display = 'block';
+            
+            // Request Fullscreen for the container
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+
+            player.playVideo();
+        });
+
+        function onPlayerStateChange(event) {
+            // When video ends, exit full screen and show the background again
+            if (event.data === YT.PlayerState.ENDED) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                document.getElementById('player-container').style.display = 'none';
+            }
+        }
+
+      let secretCode = "";
+window.addEventListener("keydown", (e) => {
+    secretCode += e.key.toLowerCase();
+    if (secretCode.includes("carrot")) {
+        alert("🥕 BUNNY MODE ACTIVATED! 🥕\nClover says: You're a genius!");
+        document.body.style.backgroundColor = "#ff9900"; // Turns the screen orange!
+        secretCode = ""; // Reset
+    }
+});
+    </script>
+</body>
+</html>
