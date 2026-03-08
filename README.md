@@ -38,11 +38,21 @@ Automatically triggers the **Fullscreen API** upon user interaction, ensuring th
 | `10` | **Final Briefing** | Mission Success: The Easter Stast | 
 
 ## 📁 Field Assets
+<div align="center">
+<p><i><b>Asset 00: The Briefing Card</b><br>
+<img src="./assets/1.png" width="200" style="border-radius: 50%;" alt="Starting card">
+  <br>
+<p><i><b>Asset 03: Clue Card Example)</b><br>
+<img src="./assets/4.png" width="200" style="border-radius: 50%;" alt="Clue card">
+  <br>  
+  <p><i><b>Asset 11: Final Card</b><br>
+<img src="./assets/11.png" width="200" style="border-radius: 50%;" alt="Final card">
+<br>
+    <p><i><b>Asset 12: Card (Back)</b><br>
+<img src="./assets/12.png" width="200" style="border-radius: 50%;" alt="Back of card">
+<br>
 
-![Starting Card](./assets/1.png)
-![Example of Clue Card](./assets/4.png)
-![Final Card](./assets/11.png)
-![Back of Card](./assets/12.png)
+</div>
 
 ## 🕵️‍♂️ The Lore: Who is Agent Clover?
 
