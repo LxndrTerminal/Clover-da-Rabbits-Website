@@ -35,7 +35,7 @@ Automatically triggers the **Fullscreen API** upon user interaction, ensuring th
 | :--- | :--- | :--- |
 | `0` | **Mission Brief** | Handshake: The Heist Begins | 
 | `1-9` | Indoor Drop Points | Tactical Egg Retrieval | 
-| `10` | **Final Briefing** | Mission Success: The Easter Stast | 
+| `10` | **Final Briefing** | Mission Success: The Easter Stash | 
 
 ## 📁 Field Assets
 <div align="center">
