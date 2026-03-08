@@ -62,6 +62,12 @@ Automatically triggers the **Fullscreen API** upon user interaction, ensuring th
 * **The Mission:** In this specific hunt, Clover’s care packages has been hijacked by "The Shadow Warren." Agents must scan the physical relay points (the Toaster, the Fridge) to help Clover retrieve her care packages and secure the house.
 * **Character Assets:** Generated using **Google Gemini**, **Hailuo** (visuals) and **ElevenLabs** (voice ID: WtA85syCrJwasGeHGH2p).
 
-## 🥚 Hidden "Easter Eggs" (Dev Lore)
+## 🕵️‍♂️ Classified Intel (Easter Eggs)
 
-I’ve hidden a few "meta" secrets within the code and deployment for those who look closely😉
+The BIA network is known for its deep encryption and hidden frequencies. While the main mission path (Clues 1-11) is clear, there are **rumors of "Ghost Signals"** hidden within the codebase and the physical environment.
+
+* **Status:** Multiple non-sequential relay points detected.
+* **Access:** Level 5 Clearance required. 
+* **Hint:** Not all clues follow the linear path of the Great Heist. Some exist only for those who look "outside the burrow."
+
+> "If you find a signal that shouldn't exist... you didn't hear it from me." — Agent Clover
