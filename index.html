@@ -177,8 +177,12 @@ c(")(")    Center your divs, or he'll hide your socks!
             } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen();
             }
-
-            player.playVideo();
+            // Wait 300ms for the animation to finish, then Play
+            setTimeout(() => {
+                if (player && player.playVideo) {
+                    player.playVideo();
+                }
+            }, 300);
         });
 
         function onPlayerStateChange(event) {
