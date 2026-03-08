@@ -1,3 +1,18 @@
+## ⚙️ Environment Setup
+
+To maintain this project, you need to set up the local development environment.
+
+### 1. Prerequisites
+* **Python 3.x**: Ensure Python is installed and added to your PATH.
+* **Pip**: The Python package installer.
+
+### 2. Dependency Installation
+Run the following command from the root directory to install all required libraries (including `segno` for QR generation):
+
+```powershell
+pip install -r requirements.txt
+```
+
 ## 🛠 Automation
 
 To regenerate the entire physical mission deck (including Easter Egg clues), run this one-liner from the project root:
