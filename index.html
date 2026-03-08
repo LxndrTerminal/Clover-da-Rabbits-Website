@@ -101,7 +101,7 @@ c(")(")    Center your divs, or he'll hide your socks!
 -->  
     <div id="ui-layer">
         <h1 style="color: #5c6bc0; text-align: center; padding: 20px;">INCOMING BUNNY<br>TRANSMISSION...</h1>
-        <button id="start-button">Tap to Play Clue</button>
+        <button id="start-button">🔊 DECRYPT & PLAY MESSAGE</button>
         <div class="grass"></div>
     </div>
 
@@ -170,19 +170,17 @@ c(")(")    Center your divs, or he'll hide your socks!
             const container = document.getElementById('player-container');
             container.style.display = 'block';
             document.getElementById('shield').style.display = 'block';
-            
+            // 1. Immediate Play (while the 'tap' is still fresh in the browser's memory)
+            player.playVideo();
+            player.unMute(); // Explicitly unmute in case it was stuck
+            player.setVolume(100);
             // Request Fullscreen for the container
             if (container.requestFullscreen) {
                 container.requestFullscreen();
             } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen();
             }
-            // Wait 300ms for the animation to finish, then Play
-            setTimeout(() => {
-                if (player && player.playVideo) {
-                    player.playVideo();
-                }
-            }, 300);
+
         });
 
         function onPlayerStateChange(event) {
