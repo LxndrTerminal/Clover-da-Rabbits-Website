@@ -217,9 +217,23 @@ c(")(")    Center your divs, or he'll hide your socks!
             } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen();
             }
+        // 2. Delay the Play command to let the phone handle the transition
+            setTimeout(() => {
+                if (player && player.playVideo) {
+                    player.playVideo();
+                }
+            }, 300);
         
-            // Tell YouTube to start - the Curtain hides the 'Big Play Button'
-            player.playVideo();
+            // 3. FORCE LIFT FALLBACK
+            // If the phone is slow and the API doesn't report 'PLAYING', 
+            // we manually hide the curtain after 5 seconds so they aren't stuck.
+            setTimeout(() => {
+                if (curtain.style.display !== 'none') {
+                    console.log("Force lifting curtain due to slow connection...");
+                    curtain.style.display = 'none';
+                    document.getElementById('shield').style.display = 'block';
+                }
+            }, 5000);
         });
 
       let secretCode = "";
