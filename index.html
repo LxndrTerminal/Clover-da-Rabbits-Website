@@ -171,14 +171,12 @@ c(")(")    Center your divs, or he'll hide your socks!
             container.style.display = 'block';
             document.getElementById('shield').style.display = 'block';
             
-            // Request Fullscreen - this often triggers auto-rotate on mobile
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) { /* Safari */
-                    container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) { /* IE11 */
-                    container.msRequestFullscreen();
-                }
+            // Request Fullscreen for the container
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
 
             player.playVideo();
         });
