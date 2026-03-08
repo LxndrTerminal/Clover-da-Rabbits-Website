@@ -87,6 +87,8 @@
             z-index: 10001; /* Sits above the player */
             color: #00ff00; /* Spy green */
             font-family: 'Courier New', Courier, monospace;
+            z-index: 10001; /* Must be higher than shield */
+            pointer-events: none; /* Allows you to tap the YouTube button underneath */
         }
         
         .loader-content { text-align: center; }
@@ -110,7 +112,9 @@
             width: 100%; height: 100%;
             background: transparent;
             z-index: 10000; /* Sits between player and curtain */
-            display: none;
+            display: none; /* Keep hidden initially */
+            pointer-events: none; /* THIS IS KEY: Allows clicks to pass through */
+            }        
         }
 
         #player { width: 100%; height: 100%; }
@@ -201,11 +205,14 @@ c(")(")    Center your divs, or he'll hide your socks!
 
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.PLAYING) {
-                // LIFT THE CURTAIN: The video is ready and playing!
-                document.getElementById('curtain').style.display = 'none';
-                document.getElementById('shield').style.display = 'block';
+                // 1. Hide the loading screen
+                curtain.style.display = 'none';
+                
+                // 2. Make the shield visible AND active
+                shield.style.display = 'block';
+                shield.style.pointerEvents = 'auto'; // Now it blocks interaction!
             }
-            }
+        }
     
         document.getElementById('start-button').addEventListener('click', function() {
             const container = document.getElementById('player-container');
