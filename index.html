@@ -67,30 +67,54 @@
             box-shadow: 0 5px 0 #f48fb1;
         }
 
-        /* Video Container */
         #player-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
             display: none;
-            z-index: 30;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 9999;
+        }
+        
+        #curtain {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #1a1a1a; /* Dark 'Agent' background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001; /* Sits above the player */
+            color: #00ff00; /* Spy green */
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .loader-content { text-align: center; }
+        
+        .spinner {
+            border: 4px solid rgba(0, 255, 0, 0.1);
+            border-left-color: #00ff00;
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        #shield {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: transparent;
+            z-index: 10000; /* Sits between player and curtain */
+            display: none;
         }
 
         #player { width: 100%; height: 100%; }
 
-        /* The "Invisible Shield" to block YouTube Clicks */
-        #shield {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80%; /* Leaves bottom controls free but blocks top/middle clicks */
-            z-index: 40;
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -105,10 +129,19 @@ c(")(")    Center your divs, or he'll hide your socks!
         <div class="grass"></div>
     </div>
 
-    <div id="player-container">
-        <div id="player"></div>
-        <div id="shield"></div>
+<div id="player-container">
+    <div id="player"></div>
+    
+    <div id="curtain">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <h2>ESTABLISHING CONNECTION...</h2>
+            <p>Decrypting Agent Clover's Message</p>
+        </div>
     </div>
+
+    <div id="shield"></div>
+</div>
 
     <script>
       
@@ -165,33 +198,29 @@ c(")(")    Center your divs, or he'll hide your socks!
             });
         }
 
-        // 4. Handle Play & Fullscreen
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                // LIFT THE CURTAIN: The video is ready and playing!
+                document.getElementById('curtain').style.display = 'none';
+                document.getElementById('shield').style.display = 'block';
+            }
+            }
+    
         document.getElementById('start-button').addEventListener('click', function() {
             const container = document.getElementById('player-container');
             container.style.display = 'block';
-            document.getElementById('shield').style.display = 'block';
-            // 1. Immediate Play (while the 'tap' is still fresh in the browser's memory)
-            player.playVideo();
-            player.unMute(); // Explicitly unmute in case it was stuck
-            player.setVolume(100);
-            // Request Fullscreen for the container
+            
+            // Request Fullscreen on the whole container
             if (container.requestFullscreen) {
                 container.requestFullscreen();
             } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen();
             }
-
+        
+            // Tell YouTube to start - the Curtain hides the 'Big Play Button'
+            player.playVideo();
         });
-
-        function onPlayerStateChange(event) {
-            // When video ends, exit full screen and show the background again
-            if (event.data === YT.PlayerState.ENDED) {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-                document.getElementById('player-container').style.display = 'none';
-            }
-        }
 
       let secretCode = "";
 window.addEventListener("keydown", (e) => {
