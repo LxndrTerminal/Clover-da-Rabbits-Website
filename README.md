@@ -54,6 +54,12 @@ Automatically triggers the **Fullscreen API** upon user interaction, ensuring th
 
 </div>
 
+---
+
+## 🛠 For the Mission Commander
+* For setup and automation, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+* For a full breakdown of hidden secrets and Easter eggs, see [SPOILERS.md](./SPOILERS.md) (Level 5 Clearance required).
+
 ## 🕵️‍♂️ The Lore: Who is Agent Clover?
 
 **Agent Clover** is a high-ranking operative in the **Bunny Intelligence Agency (BIA)**. 
