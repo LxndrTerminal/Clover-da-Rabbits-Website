@@ -1,6 +1,6 @@
 # 🕵️‍♂️🐰 Project: Agent Clover - The Great Easter Heist
 
-An immersive, high-tech Easter scavenger hunt designed for mobile devices. This project transforms a traditional indoor egg hunt into a "Secret Agent" operation. Physical mission cards hidden around the house trigger cinematic video transmissions from **Agent Clover**, leading the "agents" to the final Easter stash.
+An immersive, hybrid-reality Easter scavenger hunt. This project transforms a traditional indoor egg hunt into a live tactical operation using a custom-built SaaS platform to deliver mission-critical intel in real-time.
 
 ## 🤖 The AI & Creative Stack
 
@@ -12,30 +12,26 @@ This mission was built using a cutting-edge AI-native workflow:
 * **Graphic Design:** [Canva](https://www.canva.com/) for the final design of the physical "Top Secret" Easter mission cards.
 * **QR Engine:** [Segno (Python)](https://github.com/heuer/segno) for high-resolution, reliable QR codes.
 
-## 🛠 Web Technology Stack
+## 🛠 Web Technology Stack (V2 Redesign)
+The platform has been upgraded from a static site to a dynamic, database-driven terminal:
 
-* **Frontend:** HTML5, CSS3, and Vanilla JavaScript.
-* **API:** [YouTube IFrame Player API](https://developers.google.com/youtube/iframe_api_reference) for controlled mission playback.
-* **Hosting:** [Vercel](https://vercel.com) for instant global deployment via GitHub CI/CD.
+* **Frontend:** Vanilla JavaScript with Async/Await architecture.
+* **Backend-as-a-Service:** Supabase for real-time mission data and riddle persistence.
+* **Deployment:** Vercel with a custom CI/CD pipeline utilizing sed for secure environment variable injection during build-time.
+* **Media:** YouTube IFrame API for encrypted video playback.
 
 ## 🕵️‍♂️ Tactical Easter Features
 
-### 🛡 The Spy-Shield
-To keep the agents focused on the mission (and prevent them from accidentally closing the transmission), a **transparent CSS shield** layers over the player, blocking YouTube UI interactions while the video plays.
+### 📡 The BIA Secure Terminal
+The heart of the V2 redesign. The website now functions as a dual-mode operative tool:
+  1. **Video Mode:** Delivers high-bandwidth cinematic briefings from Agent Clover.
+  2. **Tactical Text Mode:** A live-updating terminal that fetches "Decrypted Intel" (riddles) from the Supabase cloud.
 
-### 🎭 The Connection Curtain
-A custom **"Signal Decryption" curtain** hides the YouTube interface during the buffering phase. This maintains the "Easter Agent" immersion by ensuring the first thing the kids see is the mission briefing, not a loading bar.
+### 🔐 The "Handler" Override
+Each mission station starts in an uninitialized state. The Handler (Parent/Organizer) can scan the station, enter a custom local riddle into the secure terminal, and "Lock" it. Once locked, the station becomes a permanent mission objective for the Agents (Players).
 
-### 🔄 Tactical Fullscreen
-Automatically triggers the **Fullscreen API** upon user interaction, ensuring the hunt is viewed in a cinematic landscape mode on any smartphone.
-
-## 🏠 Mission Map
-
-| Clue ID | Physical Location | Mission Phase |
-| :--- | :--- | :--- |
-| `0` | **Mission Brief** | Handshake: The Heist Begins | 
-| `1-9` | Indoor Drop Points | Tactical Egg Retrieval | 
-| `10` | **Final Briefing** | Mission Success: The Easter Stash | 
+### 💾 Local-First Resilience
+Built with a Fail-Safe Fallback system. If the operative loses internet connectivity in a "Dead Zone" (like behind the fridge), the terminal automatically switches to Browser LocalStorage to ensure the heist continues without interruption.
 
 ## 📁 Field Assets
 <div align="center">
@@ -56,9 +52,12 @@ Automatically triggers the **Fullscreen API** upon user interaction, ensuring th
 
 ---
 
-## 🛠 For the Mission Commander
-* For setup and automation, see [DEVELOPMENT.md](./DEVELOPMENT.md).
-* For a full breakdown of hidden secrets and Easter eggs, see [SPOILERS.md](./SPOILERS.md) (Level 5 Clearance required).
+## 🛠 Setup for Mission Commanders (Devs)
+
+To deploy your own BIA network:
+* Connect your GitHub to Vercel.
+* Initialize a Supabase table named mission_data with columns card_id (text), riddle_text (text), and is_locked (bool).
+* Configure the Build Command to inject your API keys into the index.html during the build process.
 
 ## 🕵️‍♂️ The Lore: Who is Agent Clover?
 
