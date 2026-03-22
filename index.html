@@ -133,14 +133,22 @@
         const videoClues = ['0', '10']; 
         const isVideoMission = videoClues.includes(clueId);
 
-        // SUPABASE INIT (Replace with your actual keys from Supabase Dashboard)
-       // SUPABASE INIT
-        const supabaseUrl = 'REPLACE_WITH_URL'; 
-        const supabaseKey = 'REPLACE_WITH_KEY';
-                
-        let supabase;
-        if(supabaseUrl !== 'YOUR_SUPABASE_URL') {
-            supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+       // SUPABASE INIT - The "Guarded" Version
+        let supabase; 
+        
+        // Check if it's already initialized by a previous script or the global scope
+        if (typeof window.supabaseClient !== 'undefined') {
+            supabase = window.supabaseClient;
+        } else {
+            const supabaseUrl = 'REPLACE_WITH_URL';
+            const supabaseKey = 'REPLACE_WITH_KEY';
+            
+            // Only initialize if we have the actual keys
+            if (supabaseUrl !== 'REPLACE_WITH_URL') {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                window.supabaseClient = supabase; // Save it to the window to prevent re-declaration errors
+            }
         }
 
         // Generate a unique ID for this specific deck's card
