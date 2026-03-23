@@ -6,8 +6,6 @@ An immersive, hybrid-reality Easter scavenger hunt. This project transforms a tr
 
 This mission was built using a cutting-edge AI-native workflow:
 
-* **Video Generation:** [Hailuo AI](https://hailuoai.com/) for cinematic footage of Agent Clover, edited in **CapCut**.
-* **Voice Synthesis:** [ElevenLabs](https://elevenlabs.io/) for a professional-grade tactical "Easter Bunny" voiceover.
 * **Asset Creation:** [Google Gemini](https://gemini.google.com) for character concept art and Easter-themed mission assets.
 * **Graphic Design:** [Canva](https://www.canva.com/) for the final design of the physical "Top Secret" Easter mission cards.
 * **QR Engine:** [Segno (Python)](https://github.com/heuer/segno) for high-resolution, reliable QR codes.
@@ -18,14 +16,12 @@ The platform has been upgraded from a static site to a dynamic, database-driven 
 * **Frontend:** Vanilla JavaScript with Async/Await architecture.
 * **Backend-as-a-Service:** Supabase for real-time mission data and riddle persistence.
 * **Deployment:** Vercel with a custom CI/CD pipeline utilizing sed for secure environment variable injection during build-time.
-* **Media:** YouTube IFrame API for encrypted video playback.
 
 ## 🕵️‍♂️ Tactical Easter Features
 
 ### 📡 The BIA Secure Terminal
 The heart of the V2 redesign. The website now functions as a dual-mode operative tool:
-  1. **Video Mode:** Delivers high-bandwidth cinematic briefings from Agent Clover.
-  2. **Tactical Text Mode:** A live-updating terminal that fetches "Decrypted Intel" (riddles) from the Supabase cloud.
+  **Tactical Text Mode:** A live-updating terminal that fetches "Decrypted Intel" (riddles) from the Supabase cloud.
 
 ### 🔐 The "Handler" Override
 Each mission station starts in an uninitialized state. The Handler (Parent/Organizer) can scan the station, enter a custom local riddle into the secure terminal, and "Lock" it. Once locked, the station becomes a permanent mission objective for the Agents (Players).
